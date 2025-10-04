@@ -4,6 +4,7 @@ import api from "../api/axios";
 import "../stylesheets/StudentsPageinTeacher.css";
 import Popup from "./Popup";
 import MarksEntry from "./../backend_web_pages/MarksEntry";
+
 const StudentPageinTeacher = () => {
   const [students, setStudents] = useState([]);
   const [classes, setClasses] = useState([]);
@@ -249,17 +250,17 @@ const StudentPageinTeacher = () => {
             </label>
 
             {/* Use MarksEntry for marks editing */}
-            <MarksEntry marks={editStudent ? editStudent.marks : newStudent.marks} onChange={handleMarksChange} disabled={submitting} />
+            <MarksEntry marks={editStudent ? editStudent.marks : newStudent.marks} />
 
-            <button type="submit" disabled={submitting}>{editStudent ? "Update" : "Create"}</button>
-            <button type="button" onClick={editStudent ? cancelEdit : cancelCreate} disabled={submitting} style={{ marginLeft: 10 }}>Cancel</button>
+            <button type="submit" >{editStudent ? "Update" : "Create"}</button>
+            <button type="button" onClick={editStudent ? cancelEdit : cancelCreate} style={{ marginLeft: 10 }}>Cancel</button>
           </form>
         )}
       </div>
 
       {!createStudentMode && !editStudent && (
         <>
-          <button onClick={openCreate} className="create-btn">Create New Student</button>
+          <button className="create-btn">Create New Student</button>
 
           <h2>Students List</h2>
 
@@ -289,19 +290,19 @@ const StudentPageinTeacher = () => {
                           type="checkbox"
                           checked={attendanceMap[student._id] ?? false}
                           onChange={() => toggleAttendance(student._id)}
-                          disabled={submitting}
+                          
                         />
                         <span className="attendance-slider">{attendanceMap[student._id] ? "Present" : "Absent"}</span>
                       </label>
                     </td>
-                    <td><button onClick={() => openEdit(student)} disabled={submitting}>Edit</button></td>
+                    <td><button>Edit</button></td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
 
-          <button onClick={submitAttendance} className="submit-btn" disabled={submitting}>
+          <button onClick={submitAttendance} className="submit-btn" >
             {attendanceSubmitted ? "Update Attendance" : "Submit Attendance"}
           </button>
 
