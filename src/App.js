@@ -12,7 +12,7 @@ import AdminPage from './components/pages/backend_web_pages/AdminPage';
 import RoleSelection from './components/pages/static_web_pages/RoleSelection';
 import TeacherDashboard from './components/pages/backend_web_pages/TeacherDashBoard';
 import StudentPageinTeacher from './components/pages/backend_web_pages/StudentsPageinTeacher';
-// import StudentManagement from './components/pages/backend_web_pages/StudentManagement';
+import StudentManagement from './components/pages/backend_web_pages/StudentManagement';
 import StudentPage from './components/pages/backend_web_pages/StudentPage';
 import TeacherPage from './components/pages/backend_web_pages/TeacherPage';
 import MarksEntry from './components/pages/backend_web_pages/MarksEntry';
@@ -41,7 +41,7 @@ function App() {
             </Route>
             <Route element={<ProtectedRoute allowedRoles={['teacher']} />}>
                 <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
-                <Route path="/teacher/studentsmanagement" element={<StudentPageinTeacher />} /> 
+                <Route path="/teacher/studentsmanagement" element={<StudentManagement />} /> 
                 {/* <Route path="/teacher/studentsmanagement" element={<StudentsPage />} /> */}
             </Route>
             <Route element={<ProtectedRoute allowedRoles={['student']} />}>
