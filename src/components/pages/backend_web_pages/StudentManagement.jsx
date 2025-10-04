@@ -4,14 +4,13 @@ import Popup from './Popup';
 import MarksEntry from "./MarksEntry";
 import '../stylesheets/StudentManagement.css';
 
-
 const emptyStudent = {
   email: "",
   password: "",
   name: "",
   admissionNumber: "",
   class: "",
-  marks: [],  // matched for MarksEntry
+  marks: [],  // matched to MarksEntry
   dateOfAdmission: "",
   demographics: { dob: "", gender: "", address: "", phone: "" },
   motherDetails: { name: "", phone: "", aadharNumber: "", bankAccountType: "", accountNumber: "", bankName: "", branch: "", ifsc: "" },
@@ -36,7 +35,6 @@ const StudentManagement = ({ onClose }) => {
   };
 
   useEffect(() => {
-    // Auto clear messages after 3 sec
     if (message) {
       const timer = setTimeout(() => setMessage(""), 3000);
       return () => clearTimeout(timer);
@@ -51,7 +49,6 @@ const StudentManagement = ({ onClose }) => {
         const clsSet = new Set(res.data.map(s => s.class?.trim()).filter(c => c));
         setClasses([...clsSet].sort());
 
-        // Init attendance toggles (default absent)
         const attMap = {};
         const yest = getYesterday().slice(0, 10);
         res.data.forEach(s => {
@@ -94,15 +91,11 @@ const StudentManagement = ({ onClose }) => {
   };
 
   const openEdit = (student) => {
-    // Deep copy and ensure nested objects exist to avoid undefined errors
     const copy = JSON.parse(JSON.stringify(student));
     copy.demographics = copy.demographics || emptyStudent.demographics;
     copy.motherDetails = copy.motherDetails || emptyStudent.motherDetails;
     copy.fatherDetails = copy.fatherDetails || emptyStudent.fatherDetails;
-
-    // Format date for input field
     if (copy.dateOfAdmission) copy.dateOfAdmission = new Date(copy.dateOfAdmission).toISOString().slice(0, 10);
-
     setEditId(student._id);
     setStudentForm(copy);
     setCreateMode(false);
@@ -186,11 +179,13 @@ const StudentManagement = ({ onClose }) => {
       <button onClick={onClose}>Back to Dashboard</button>
       <h1>Student Management</h1>
 
-      {/* <label>Filter by Class:</label>
-      <select value={filterClass} onChange={e => setFilterClass(e.target.value)}>
-        <option value="">All</option>
-        {classes.map(cls => <option key={cls} value={cls}>{cls}</option>)}
-      </select> */}
+      {/* Uncomment to use filter by class */}
+      {/* <label>Filter by Class:
+        <select value={filterClass} onChange={e => setFilterClass(e.target.value)}>
+          <option value="">All</option>
+          {classes.map(cls => <option key={cls} value={cls}>{cls}</option>)}
+        </select>
+      </label> */}
 
       {(editId !== null || createMode) && (
         <form onSubmit={submitForm}>
@@ -270,11 +265,10 @@ const StudentManagement = ({ onClose }) => {
             <input type="text" value={studentForm.fatherDetails.aadharNumber} onChange={e => handleChange('fatherDetails', 'aadharNumber', e.target.value)} disabled={submitting} />
           </label>
 
-          {/* Marks entry component */}
           <MarksEntry marks={studentForm.marks} onChange={handleMarksChange} disabled={submitting} />
 
           <button type="submit" disabled={submitting}>{editId ? "Update" : "Create"}</button>
-          <button type="button" onClick={editId ? cancelEdit : cancelCreate} disabled={submitting}>Cancel</button>
+          <button type="button" onClick={editId ? cancelEdit : cancelCreate} disabled={submitting} style={{ marginLeft: 10 }}>Cancel</button>
         </form>
       )}
 
