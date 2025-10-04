@@ -537,8 +537,25 @@ const StudentPageinTeacher = () => {
             <label>DOB
               <input type="date" value={editStudent ? editStudent.demographics.dob?.slice(0, 10) : newStudent.demographics.dob} onChange={e => handleChange(editStudent ? setEditStudent : setNewStudent, editStudent ? editStudent : newStudent, "demographics", "dob", e.target.value)} />
             </label>
-            <label>Gender
-              <input type="text" value={editStudent ? editStudent.demographics.gender : newStudent.demographics.gender} onChange={e => handleChange(editStudent ? setEditStudent : setNewStudent, editStudent ? editStudent : newStudent, "demographics", "gender", e.target.value)} />
+            <label>
+              Gender
+              <select
+                value={editStudent ? editStudent.demographics.gender : newStudent.demographics.gender}
+                onChange={e =>
+                  handleChange(
+                    editStudent ? setEditStudent : setNewStudent,
+                    editStudent ? editStudent : newStudent,
+                    "demographics",
+                    "gender",
+                    e.target.value
+                  )
+                }
+                required
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
             </label>
             <label>Address
               <input type="text" value={editStudent ? editStudent.demographics.address : newStudent.demographics.address} onChange={e => handleChange(editStudent ? setEditStudent : setNewStudent, editStudent ? editStudent : newStudent, "demographics", "address", e.target.value)} />
