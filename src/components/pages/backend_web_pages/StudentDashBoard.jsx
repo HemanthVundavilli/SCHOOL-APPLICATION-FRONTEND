@@ -72,7 +72,7 @@ const StudentDashboard = () => {
         <h2>Mother's Details</h2>
         <p><strong>Name: </strong>{studentData?.motherDetails?.name || "-"}</p>
         <p><strong>Phone: </strong>{studentData?.motherDetails?.phone || "-"}</p>
-        <p><strong>Aadhaar: </strong>{studentData?.motherDetails?.aadhaarNumber || "-"}</p>
+        <p><strong>Aadhaar: </strong>{studentData?.motherDetails?.aadharNumber || "-"}</p>
         <p><strong>Account Type: </strong>{studentData?.motherDetails?.bankAccountType || "-"}</p>
         <p><strong>Account Number: </strong>{studentData?.motherDetails?.accountNumber || "-"}</p>
         <p><strong>Bank Name: </strong>{studentData?.motherDetails?.bankName || "-"}</p>
@@ -84,7 +84,7 @@ const StudentDashboard = () => {
         <h2>Father's Details</h2>
         <p><strong>Name: </strong>{studentData?.fatherDetails?.name || "-"}</p>
         <p><strong>Phone: </strong>{studentData?.fatherDetails?.phone || "-"}</p>
-        <p><strong>Aadhaar: </strong>{studentData?.fatherDetails?.aadhaarNumber || "-"}</p>
+        <p><strong>Aadhaar: </strong>{studentData?.fatherDetails?.aadharNumber || "-"}</p>
       </section>
 
       <section>
