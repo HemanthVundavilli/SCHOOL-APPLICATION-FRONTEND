@@ -1,0 +1,172 @@
+/* Container */
+.marks-entry-container {
+  max-width: 900px;
+  margin: 30px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Header */
+.marks-entry-container h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+}
+
+/* Filters */
+.filter-group {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-group label {
+  font-weight: 600;
+  font-size: 16px;
+  align-self: center;
+}
+
+.filter-group select,
+.filter-group input[type="text"] {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 200px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus,
+.filter-group input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Student item */
+.student-card {
+  border: 1px solid #ddd;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background: #fafafa;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.student-card:hover {
+  box-shadow: 0 0 16px rgba(0, 123, 255, 0.3);
+}
+
+.student-card-header {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #007bff;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
+
+thead th {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  padding: 10px 8px;
+  border: 1px solid #007bff;
+  text-align: center;
+}
+
+tbody td {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f7f9fc;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="number"] {
+  width: 60px;
+  padding: 6px 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  padding: 8px 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #a2c0f2;
+  cursor: not-allowed;
+}
+
+button + button {
+  margin-left: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .filter-group {
+    flex-direction: column;
+  }
+  .filter-group select,
+  .filter-group input[type="text"] {
+    min-width: 100%;
+  }
+  .student-card {
+    padding: 15px;
+  }
+  table, thead, tbody, tr, th, td {
+    display: block;
+    width: 100%;
+  }
+  thead tr {
+    display: none;
+  }
+  tbody td {
+    border: none;
+    padding: 10px 0;
+    position: relative;
+  }
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: inline-block;
+    width: 200px;
+    color: #940b0b;
+  }
+}

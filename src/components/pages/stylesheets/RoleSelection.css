@@ -1,0 +1,87 @@
+.role-selection-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f8f9fa 60%, #e9ecef 100%);
+}
+
+.role-selection-title {
+  margin-bottom: 2rem;
+  font-weight: bold;
+  color: #6c757d;
+  font-size: 2rem;
+}
+
+.role-blocks {
+  display: flex;
+  gap: 2rem;
+}
+
+.role-block {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  width: 260px;
+  height: 140px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 1.5rem;
+  border-top: 5px solid transparent;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.role-block:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transform: translateY(-4px) scale(1.03);
+}
+
+.role-block.student {
+  border-top-color: #0d6efd;
+}
+.role-block.teacher {
+  border-top-color: #ffc107;
+}
+.role-block.admin {
+  border-top-color: #198754;
+}
+
+.role-icon {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+}
+
+.role-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: inherit;
+  flex: 1;
+}
+
+.role-login-btn {
+  background: #0d6efd;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.role-block.teacher .role-login-btn {
+  background: #ffc107;
+  color: #212529;
+}
+.role-block.admin .role-login-btn {
+  background: #198754;
+  color: #fff;
+}

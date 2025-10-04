@@ -1,0 +1,55 @@
+/* Navbar */
+.navbar {
+  background-color: #81c784 !important;
+}
+
+/* Hero section */
+.hero-section {
+  background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+}
+
+/* Stats Section */
+.stats-section {
+  background-color: #e3f2fd;
+}
+
+.stats-box h2 {
+  color: #1565c0;
+}
+
+.stats-box p {
+  color: #0d47a1;
+}
+
+/* News & Announcements Section */
+.news-section {
+  background-color: #fce4ec;
+}
+
+.card-title {
+  color: #6a1b9a;
+}
+
+.card-text {
+  color: #4a148c;
+}
+
+.btn-outline-primary,
+.btn-outline-success,
+.btn-outline-warning {
+  border-radius: 25px;
+  font-weight: 500;
+}
+
+/* Buttons hover effect */
+.btn:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* General */
+body {
+  background-color: #fafafa;
+  color: #2e7d32;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

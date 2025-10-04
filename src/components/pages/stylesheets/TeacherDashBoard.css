@@ -1,0 +1,227 @@
+/* TeacherDashBoard.css */
+
+.dashboard-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+p {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.attendance-section {
+  margin-top: 30px;
+  background: white;
+  padding: 16px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+}
+
+.attendance-section h2 {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #444;
+}
+
+.attendance-section p {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.attendance-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.attendance-section table th,
+.attendance-section table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.attendance-section table th {
+  background-color: #f2f6fc;
+  color: #555;
+  font-weight: 700;
+}
+
+button {
+  margin-top: 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* StudentManagement Overlay */
+.student-management-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px 0;
+  z-index: 1000;
+}
+
+.student-management-content {
+  background: white;
+  max-width: 1100px;
+  width: 90%;
+  border-radius: 10px;
+  padding: 30px 40px;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.2);
+  position: relative;
+}
+
+.student-management-content h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Table Styles */
+.student-management-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.95rem;
+}
+
+.student-management-content table th,
+.student-management-content table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.student-management-content table th {
+  background-color: #f4f7fa;
+  font-weight: 600;
+  color: #555;
+}
+
+.student-management-content table tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+
+/* Form styles */
+.edit-form label {
+  display: block;
+  margin: 10px 0 4px;
+  font-weight: 600;
+  color: #444;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="email"],
+.edit-form input[type="password"],
+.edit-form input[type="number"],
+.edit-form input[type="date"],
+.edit-form select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.25s ease;
+}
+
+.edit-form input:focus,
+.edit-form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.edit-form h3 {
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #222;
+}
+
+.edit-form h4 {
+  margin-top: 20px;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 6px;
+}
+
+/* Buttons inside form */
+.edit-form button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.edit-form button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+}
+
+.edit-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.edit-form button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+  margin-left: 12px;
+}
+
+.edit-form button[type="button"]:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.edit-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Popup Style */
+.popup-message {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #323232;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.3);
+  z-index: 1100;
+}

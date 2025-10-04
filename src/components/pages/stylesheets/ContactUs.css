@@ -1,0 +1,15 @@
+.contact-section {
+    background-color: #f9fbff;
+    color: #333;
+  }
+  
+  .contact-info h4 {
+    font-weight: 600;
+  }
+  
+  .map-container {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  }
+  
