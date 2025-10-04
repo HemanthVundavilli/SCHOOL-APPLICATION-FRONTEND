@@ -1,3 +1,10 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
+import "../stylesheets/StudentsPageinTeacher.css";
+import Popup from "./Popup";
+import MarksEntry from "./../backend_web_pages/MarksEntry";
+
 {/* import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
@@ -320,12 +327,7 @@ export default StudentPageinTeacher;
 */}
 
 
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../api/axios";
-import "../stylesheets/StudentsPageinTeacher.css";
-import Popup from "./Popup";
-import MarksEntry from "./../backend_web_pages/MarksEntry";
+
 
 const StudentPageinTeacher = () => {
   const [students, setStudents] = useState([]);
