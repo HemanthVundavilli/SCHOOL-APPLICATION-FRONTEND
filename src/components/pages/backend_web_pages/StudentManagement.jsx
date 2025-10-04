@@ -10,10 +10,19 @@ const emptyStudent = {
   name: "",
   admissionNumber: "",
   class: "",
-  marks: [],  // matched to MarksEntry
+  marks: [],
   dateOfAdmission: "",
   demographics: { dob: "", gender: "", address: "", phone: "" },
-  motherDetails: { name: "", phone: "", aadharNumber: "", bankAccountType: "", accountNumber: "", bankName: "", branch: "", ifsc: "" },
+  motherDetails: {
+    name: "",
+    phone: "",
+    aadharNumber: "",
+    bankAccountType: "",
+    accountNumber: "",
+    bankName: "",
+    branch: "",
+    ifsc: ""
+  },
   fatherDetails: { name: "", phone: "", aadharNumber: "" }
 };
 
@@ -27,6 +36,7 @@ const StudentManagement = ({ onClose }) => {
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState("");
   const [createMode, setCreateMode] = useState(false);
+  const [prevAttendanceMap, setPrevAttendanceMap] = useState({});
 
   const getYesterday = () => {
     let d = new Date();
@@ -56,14 +66,17 @@ const StudentManagement = ({ onClose }) => {
           attMap[s._id] = att ? att.present : false;
         });
         setAttendanceMap(attMap);
-      } catch {
-        setMessage("Failed to load students");
+        setPrevAttendanceMap(attMap);
+      } catch (err) {
+        setMessage(err.response?.data?.error || "Failed to load students");
       }
     }
     fetchStudents();
   }, []);
 
-  const filteredStudents = filterClass ? students.filter(s => s.class?.trim() === filterClass) : students;
+  const filteredStudents = filterClass
+    ? students.filter(s => s.class?.trim() === filterClass)
+    : students;
 
   const toggleAttendance = (id) => {
     setAttendanceMap(prev => ({ ...prev, [id]: !prev[id] }));
@@ -73,13 +86,18 @@ const StudentManagement = ({ onClose }) => {
     setSubmitting(true);
     try {
       const nowISO = new Date().toISOString();
-      const updates = Object.entries(attendanceMap).map(([id, present]) =>
-        api.put(`/students/${id}/attendance`, { date: nowISO, present })
-      );
-      await Promise.all(updates);
+      const updates = Object.entries(attendanceMap)
+        .filter(([id, present]) => present !== prevAttendanceMap[id])
+        .map(([id, present]) =>
+          api.put(`/students/${id}/attendance`, { date: nowISO, present })
+        );
+
+      if (updates.length > 0) await Promise.all(updates);
+
+      setPrevAttendanceMap(attendanceMap);
       setMessage("Attendance updated successfully.");
-    } catch {
-      setMessage("Failed to update attendance.");
+    } catch (err) {
+      setMessage(err.response?.data?.error || "Failed to update attendance.");
     }
     setSubmitting(false);
   };
@@ -95,7 +113,13 @@ const StudentManagement = ({ onClose }) => {
     copy.demographics = copy.demographics || emptyStudent.demographics;
     copy.motherDetails = copy.motherDetails || emptyStudent.motherDetails;
     copy.fatherDetails = copy.fatherDetails || emptyStudent.fatherDetails;
-    if (copy.dateOfAdmission) copy.dateOfAdmission = new Date(copy.dateOfAdmission).toISOString().slice(0, 10);
+
+    if (copy.dateOfAdmission && !isNaN(Date.parse(copy.dateOfAdmission))) {
+      copy.dateOfAdmission = new Date(copy.dateOfAdmission)
+        .toISOString()
+        .slice(0, 10);
+    }
+
     setEditId(student._id);
     setStudentForm(copy);
     setCreateMode(false);
@@ -179,96 +203,210 @@ const StudentManagement = ({ onClose }) => {
       <button onClick={onClose}>Back to Dashboard</button>
       <h1>Student Management</h1>
 
-      {/* Uncomment to use filter by class */}
-      {/* <label>Filter by Class:
-        <select value={filterClass} onChange={e => setFilterClass(e.target.value)}>
-          <option value="">All</option>
-          {classes.map(cls => <option key={cls} value={cls}>{cls}</option>)}
-        </select>
-      </label> */}
+      {/* Uncomment if class filtering is needed */}
+      {/* 
+      <label>Filter by Class:</label>
+      <select value={filterClass} onChange={e => setFilterClass(e.target.value)}>
+        <option value="">All</option>
+        {classes.map(cls => <option key={cls} value={cls}>{cls}</option>)}
+      </select> 
+      */}
 
       {(editId !== null || createMode) && (
         <form onSubmit={submitForm}>
-          {!editId && <>
-            <label>Email
-              <input type="email" value={studentForm.email} onChange={e => handleChange(null, 'email', e.target.value)} required disabled={submitting} />
-            </label>
-            <label>Password
-              <input type="password" value={studentForm.password} onChange={e => handleChange(null, 'password', e.target.value)} required disabled={submitting} />
-            </label>
-          </>}
+          {!editId && (
+            <>
+              <label>Email
+                <input
+                  type="email"
+                  value={studentForm.email}
+                  onChange={e => handleChange(null, 'email', e.target.value)}
+                  required
+                  disabled={submitting}
+                />
+              </label>
+              <label>Password
+                <input
+                  type="password"
+                  value={studentForm.password}
+                  onChange={e => handleChange(null, 'password', e.target.value)}
+                  required
+                  disabled={submitting}
+                  autoComplete="off"
+                />
+              </label>
+            </>
+          )}
           <label>Name
-            <input type="text" value={studentForm.name} onChange={e => handleChange(null, 'name', e.target.value)} required disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.name}
+              onChange={e => handleChange(null, 'name', e.target.value)}
+              required
+              disabled={submitting}
+            />
           </label>
           <label>Admission Number
-            <input type="text" value={studentForm.admissionNumber} onChange={e => handleChange(null, 'admissionNumber', e.target.value)} required disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.admissionNumber}
+              onChange={e => handleChange(null, 'admissionNumber', e.target.value)}
+              required
+              disabled={submitting}
+            />
           </label>
           <label>Class
-            <input type="text" value={studentForm.class} onChange={e => handleChange(null, 'class', e.target.value)} required disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.class}
+              onChange={e => handleChange(null, 'class', e.target.value)}
+              required
+              disabled={submitting}
+            />
           </label>
           <label>Date of Admission
-            <input type="date" value={studentForm.dateOfAdmission} onChange={e => handleChange(null, 'dateOfAdmission', e.target.value)} required disabled={submitting} />
+            <input
+              type="date"
+              value={studentForm.dateOfAdmission}
+              onChange={e => handleChange(null, 'dateOfAdmission', e.target.value)}
+              required
+              disabled={submitting}
+            />
           </label>
 
           <h3>Demographics</h3>
           <label>DOB
-            <input type="date" value={studentForm.demographics.dob} onChange={e => handleChange('demographics', 'dob', e.target.value)} disabled={submitting} />
+            <input
+              type="date"
+              value={studentForm.demographics.dob}
+              onChange={e => handleChange('demographics', 'dob', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Gender
-            <input type="text" value={studentForm.demographics.gender} onChange={e => handleChange('demographics', 'gender', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.demographics.gender}
+              onChange={e => handleChange('demographics', 'gender', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Address
-            <input type="text" value={studentForm.demographics.address} onChange={e => handleChange('demographics', 'address', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.demographics.address}
+              onChange={e => handleChange('demographics', 'address', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Phone
-            <input type="text" value={studentForm.demographics.phone} onChange={e => handleChange('demographics', 'phone', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.demographics.phone}
+              onChange={e => handleChange('demographics', 'phone', e.target.value)}
+              disabled={submitting}
+            />
           </label>
 
           <h3>Mother Details</h3>
           <label>Name
-            <input type="text" value={studentForm.motherDetails.name} onChange={e => handleChange('motherDetails', 'name', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.motherDetails.name}
+              onChange={e => handleChange('motherDetails', 'name', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Phone
-            <input type="text" value={studentForm.motherDetails.phone} onChange={e => handleChange('motherDetails', 'phone', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.motherDetails.phone}
+              onChange={e => handleChange('motherDetails', 'phone', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Aadhaar
-            <input type="text" value={studentForm.motherDetails.aadharNumber} onChange={e => handleChange('motherDetails', 'aadharNumber', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.motherDetails.aadharNumber}
+              onChange={e => handleChange('motherDetails', 'aadharNumber', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Bank Account Type
-            <select value={studentForm.motherDetails.bankAccountType} onChange={e => handleChange('motherDetails', 'bankAccountType', e.target.value)} disabled={submitting}>
+            <select
+              value={studentForm.motherDetails.bankAccountType}
+              onChange={e => handleChange('motherDetails', 'bankAccountType', e.target.value)}
+              disabled={submitting}
+            >
               <option value="">Select</option>
               <option value="Savings">Savings</option>
               <option value="Current">Current</option>
             </select>
           </label>
           <label>Account Number
-            <input type="text" value={studentForm.motherDetails.accountNumber} onChange={e => handleChange('motherDetails', 'accountNumber', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.motherDetails.accountNumber}
+              onChange={e => handleChange('motherDetails', 'accountNumber', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Bank Name
-            <input type="text" value={studentForm.motherDetails.bankName} onChange={e => handleChange('motherDetails', 'bankName', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.motherDetails.bankName}
+              onChange={e => handleChange('motherDetails', 'bankName', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Branch
-            <input type="text" value={studentForm.motherDetails.branch} onChange={e => handleChange('motherDetails', 'branch', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.motherDetails.branch}
+              onChange={e => handleChange('motherDetails', 'branch', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>IFSC
-            <input type="text" value={studentForm.motherDetails.ifsc} onChange={e => handleChange('motherDetails', 'ifsc', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.motherDetails.ifsc}
+              onChange={e => handleChange('motherDetails', 'ifsc', e.target.value)}
+              disabled={submitting}
+            />
           </label>
 
           <h3>Father Details</h3>
           <label>Name
-            <input type="text" value={studentForm.fatherDetails.name} onChange={e => handleChange('fatherDetails', 'name', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.fatherDetails.name}
+              onChange={e => handleChange('fatherDetails', 'name', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Phone
-            <input type="text" value={studentForm.fatherDetails.phone} onChange={e => handleChange('fatherDetails', 'phone', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.fatherDetails.phone}
+              onChange={e => handleChange('fatherDetails', 'phone', e.target.value)}
+              disabled={submitting}
+            />
           </label>
           <label>Aadhaar
-            <input type="text" value={studentForm.fatherDetails.aadharNumber} onChange={e => handleChange('fatherDetails', 'aadharNumber', e.target.value)} disabled={submitting} />
+            <input
+              type="text"
+              value={studentForm.fatherDetails.aadharNumber}
+              onChange={e => handleChange('fatherDetails', 'aadharNumber', e.target.value)}
+              disabled={submitting}
+            />
           </label>
 
           <MarksEntry marks={studentForm.marks} onChange={handleMarksChange} disabled={submitting} />
 
           <button type="submit" disabled={submitting}>{editId ? "Update" : "Create"}</button>
-          <button type="button" onClick={editId ? cancelEdit : cancelCreate} disabled={submitting} style={{ marginLeft: 10 }}>Cancel</button>
+          <button type="button" onClick={editId ? cancelEdit : cancelCreate} disabled={submitting}>Cancel</button>
         </form>
       )}
 
@@ -292,7 +430,7 @@ const StudentManagement = ({ onClose }) => {
                 </thead>
                 <tbody>
                   {filteredStudents.map(student => (
-                    <tr key={student._id}>
+                    <tr key={student._id || student.admissionNumber}>
                       <td>{student.name}</td>
                       <td>{student.admissionNumber}</td>
                       <td>{student.class || 'N/A'}</td>
@@ -304,7 +442,9 @@ const StudentManagement = ({ onClose }) => {
                           disabled={submitting}
                         />
                       </td>
-                      <td><button onClick={() => openEdit(student)} disabled={submitting}>Edit</button></td>
+                      <td>
+                        <button onClick={() => openEdit(student)} disabled={submitting}>Edit</button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
