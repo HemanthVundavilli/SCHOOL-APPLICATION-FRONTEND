@@ -200,6 +200,8 @@ const navigate = useNavigate();
   };
 
   return (
+    <>
+    <Navbar />
     <div className="page-container">
       <h1>Student Management</h1>
 
@@ -514,6 +516,7 @@ const navigate = useNavigate();
 
       <Popup message={popupMessage} onClose={() => setPopupMessage("")} />
     </div>
+  </>
   );
 };
 
