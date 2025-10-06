@@ -490,6 +490,15 @@ const StudentPageinTeacher = () => {
     setCreateStudentMode(false);
   };
 
+  const calculateAttendancePercent = (student) => {
+  const totalDays = (student.attendance?.length || 0) + 1; // +1 for current day toggle
+  const presentDays =
+    (student.attendance?.filter(a => a.present).length || 0) +
+    (attendanceMap[student._id] ? 1 : 0);
+  return Math.round((presentDays / totalDays) * 100);
+};
+
+
   if (loading) return <div>Loading students...</div>;
   if (error) return <div>{error}</div>;
 
@@ -620,43 +629,43 @@ const StudentPageinTeacher = () => {
           <h2>Students List</h2>
 
           <table className="student-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Admission No.</th>
-                <th>Class</th>
-                <th>Present</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredStudents.map(student => {
-                const totalDays = student.attendance?.length || 0;
-                const presentDays = student.attendance?.filter(a => a.present).length || 0;
-                const attendancePercent = totalDays ? Math.round((presentDays / totalDays) * 100) : 0;
-                return (
-                  <tr key={student._id}>
-                    <td>{student.name || '-'}</td>
-                    <td>{student.admissionNumber || '-'}</td>
-                    <td>{student.class || 'N/A'}</td>
-                    <td>
-                      <label className="attendance-switch">
-                        <input
-                          type="checkbox"
-                          checked={attendanceMap[student._id] ?? false}
-                          onChange={() => toggleAttendance(student._id)}
-                          
-                        />
-                        <span className="attendance-slider">{attendanceMap[student._id] ? "Present" : "Absent"}</span>
-                      </label>
-                    </td>
-                    <td><button onClick={() => startEdit(student)}>Edit</button></td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Admission No.</th>
+              <th>Class</th>
+              <th>Present</th>
+              <th>Attendance %</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredStudents.map(student => {
+              const attendancePercent = calculateAttendancePercent(student);
+              return (
+                <tr key={student._id}>
+                  <td>{student.name || '-'}</td>
+                  <td>{student.admissionNumber || '-'}</td>
+                  <td>{student.class || 'N/A'}</td>
+                  <td>
+                    <label className="attendance-switch">
+                      <input
+                        type="checkbox"
+                        checked={attendanceMap[student._id] ?? false}
+                        onChange={() => toggleAttendance(student._id)}
+                      />
+                      <span className="attendance-slider">
+                        {attendanceMap[student._id] ? "Present" : "Absent"}
+                      </span>
+                    </label>
+                  </td>
+                  <td>{attendancePercent}%</td>
+                  <td><button onClick={() => startEdit(student)}>Edit</button></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
           <button onClick={submitAttendance} className="submit-btn" >
             {attendanceSubmitted ? "Update Attendance" : "Submit Attendance"}
           </button>
