@@ -1,11 +1,18 @@
 import axios from 'axios';
 
-const token = localStorage.getItem('token'); // or wherever you store your JWT token
-
 const api = axios.create({
   baseURL: 'https://school-application-backend.onrender.com/api',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
 });
+// Attach token dynamically before each request
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
+  else {
+    delete config.headers['Authorization'];
+  }
+  return config;
+});
+
 export default api;
