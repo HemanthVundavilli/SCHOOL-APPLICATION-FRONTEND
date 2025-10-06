@@ -3,6 +3,7 @@ import React from 'react';
 import api from './../api/axios';
 import LogoutButton from './LogoutButton';
 import './../stylesheets/AdminPage.css';
+import Navbar from './Navbar';
 const AdminPage = () => {
   const [studentsList, setStudentsList] = React.useState([]);
   const [teachersList, setTeachersList] = React.useState([]);
@@ -26,6 +27,8 @@ const AdminPage = () => {
   }, []);
 
   return (
+    <>
+      <Navbar />
     <div className="admin-container">
       <h1>Admin Dashboard</h1>
       <LogoutButton />
@@ -53,6 +56,7 @@ const AdminPage = () => {
         <button onClick={() => navigate('/teachersmanagement')}>Manage Teachers</button>
       </section>
     </div>
+    </>
   );
 };
 
