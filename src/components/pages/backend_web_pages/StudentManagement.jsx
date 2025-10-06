@@ -3,6 +3,7 @@ import api from './../api/axios';
 import Popup from './Popup';
 import MarksEntry from "./MarksEntry";
 import '../stylesheets/StudentManagement.css';
+import Navbar from "./Navbar";
 
 const emptyStudent = {
   email: "",
@@ -184,6 +185,8 @@ const StudentManagement = ({ onClose }) => {
   if (!students) return <p>Loading students...</p>;
 
   return (
+    <>
+    <Navbar />
     <div>
       <button onClick={onClose}>Back to Dashboard</button>
       <h1>Student Management</h1>
@@ -334,6 +337,7 @@ const StudentManagement = ({ onClose }) => {
 
       <Popup message={message} onClose={() => setMessage('')} />
     </div>
+    </>
   );
 };
 
