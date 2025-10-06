@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from './../api/axios';
 import Popup from './Popup';
 import '../stylesheets/TeacherPage.css';
+import Navbar from './Navbar';
 
 const TeacherPage = () => {
   const [teachers, setTeachers] = useState([]);
@@ -132,6 +133,9 @@ const TeacherPage = () => {
   }
 
   return (
+    <>
+      <Navbar />
+      
     <div className="page-container">
       <h1>Teacher Management</h1>
 
@@ -248,6 +252,7 @@ const TeacherPage = () => {
 
       {popupMessage && <Popup message={popupMessage} onClose={() => setPopupMessage('')} />}
     </div>
+    </>
   );
 };
 
