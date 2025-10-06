@@ -5,6 +5,7 @@ import LogoutButton from './../backend_web_pages/LogoutButton';
 import StudentManagement from "./StudentManagement";
 import { useNavigate } from 'react-router-dom';
 import '../stylesheets/TeacherDashBoard.css';
+import Navbar from './Navbar';
 
 const TeacherDashboard = () => {
   const [teacher, setTeacher] = useState(null);
@@ -47,6 +48,9 @@ if (!loading && !teacher) return <div>Teacher data unavailable.</div>;
     Math.round(attendance.filter(a => a.present).length * 100 / attendance.length);
 
   return (
+    <>
+    <Navbar />
+  
     <div className="dashboard-container">
 
   
@@ -84,6 +88,7 @@ if (!loading && !teacher) return <div>Teacher data unavailable.</div>;
 
       <Popup message={popupMessage} onClose={() => setPopupMessage("")} />
     </div>
+    </>
   );
 };
 
