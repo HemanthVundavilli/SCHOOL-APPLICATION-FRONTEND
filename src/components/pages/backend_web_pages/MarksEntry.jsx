@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from '../api/axios';
 import Popup from "./Popup";
+import Navbar from "./Navbar";
 
 const subjects = ["Telugu", "Hindi", "English", "Maths", "Science", "Social"];
 const assessmentTypes = ["FA1", "FA2", "FA3", "SA1", "SA2", "FE"];
@@ -144,6 +145,8 @@ const MarksEntry = () => {
   if (error) return <p>{error}</p>;
 
   return (
+    <>
+    <Navbar />
     <div style={{ maxWidth: '900px', margin: 'auto', fontFamily: 'Arial, sans-serif' }}>
       <h3>Marks Entry</h3>
 
@@ -226,6 +229,7 @@ const MarksEntry = () => {
       )}
       {showPopup && <Popup message={popupMessage} onClose={() => setShowPopup(false)} />}
     </div>
+    </>
   );
 };
 
