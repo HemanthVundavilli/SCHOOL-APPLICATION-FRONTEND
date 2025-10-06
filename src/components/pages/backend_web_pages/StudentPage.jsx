@@ -3,6 +3,7 @@ import api from "./../api/axios";
 import Popup from "./Popup";
 import "../stylesheets/StudentPage.css";
 import { useNavigate } from 'react-router-dom';
+import Navbar from "./Navbar";
 
 const StudentPage = () => {
   const [students, setStudents] = useState([]);
