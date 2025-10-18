@@ -159,7 +159,7 @@ const StudentManagement = ({ onClose }) => {
       if (editId) {
         delete payload.email;
         delete payload.password;
-        await api.put(`/students/${editId}`, payload);
+        await api.put(`/students/admin-edit/${editId}`, payload);
         setMessage("Student updated successfully.");
       } else {
         await api.post("/students", {

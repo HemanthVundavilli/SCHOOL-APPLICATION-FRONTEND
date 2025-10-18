@@ -514,6 +514,10 @@ const navigate = useNavigate();
       Enter/Edit Marks
       </button>
 
+      <button onClick={() => navigate('/fees-entry')}>
+        Enter/Edit Fees
+      </button>
+
       <Popup message={popupMessage} onClose={() => setPopupMessage("")} />
     </div>
   </>

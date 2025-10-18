@@ -454,7 +454,7 @@ const StudentPageinTeacher = () => {
   async function submitEdit(e) {
     e.preventDefault();
     try {
-      await api.put(`/students/${editingId}`, editStudent);
+      await api.put(`/students/admin-edit/${editingId}`, editStudent);
       showPopup("Student updated successfully");
       cancelEdit();
       fetchStudents();
@@ -675,6 +675,10 @@ const StudentPageinTeacher = () => {
 
           <button onClick={() => navigate('/marks-entry')}>
             Enter/Edit Marks
+          </button>
+
+          <button onClick={() => navigate('/fees-entry')}>
+            Enter/Edit Fees
           </button>
         </>
       )}

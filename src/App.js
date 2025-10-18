@@ -17,6 +17,7 @@ import StudentPage from './components/pages/backend_web_pages/StudentPage';
 import TeacherPage from './components/pages/backend_web_pages/TeacherPage';
 import MarksEntry from './components/pages/backend_web_pages/MarksEntry';
 import StudentDashboard from './components/pages/backend_web_pages/StudentDashBoard';
+import FeesEntry from './components/pages/backend_web_pages/FeesEntry';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/role-selection" element={<RoleSelection />} />
             <Route path="/login" element={<LoginMain />} />
             <Route path='/marks-entry' element={<MarksEntry />} />
+            <Route path='fees-entry' element={<FeesEntry />} />
             <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/studentsmanagement" element={<StudentPage />} />
