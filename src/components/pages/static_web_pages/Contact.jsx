@@ -79,7 +79,7 @@ const ContactUs = () => {
               </p>
 
               <h4 className="text-primary mb-3">Contact</h4>
-              <p>9000709370</p>
+              <p>7842153253</p>
 
               <h4 className="text-primary mb-3">Address</h4>
               <p>
