@@ -79,64 +79,46 @@ const FeesStructure = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Nursery</td>
-                <td>₹1,000</td>
-                <td>₹6,000</td>
-                <td>₹7,000</td>
-              </tr>
-              <tr>
-                <td>LKG</td>
-                <td>₹1,000</td>
-                <td>₹6,500</td>
-                <td>₹7,500</td>
-              </tr>
-              <tr>
-                <td>UKG</td>
-                <td>₹1,000</td>
-                <td>₹6,500</td>
-                <td>₹7,500</td>
-              </tr>
-              <tr>
                 <td>Class 1</td>
-                <td>₹1,000</td>
-                <td>₹7,000</td>
-                <td>₹8,000</td>
-              </tr>
-              <tr>
-                <td>Class 2</td>
                 <td>₹1,000</td>
                 <td>₹7,500</td>
                 <td>₹8,500</td>
               </tr>
               <tr>
+                <td>Class 2</td>
+                <td>₹1,000</td>
+                <td>₹8,000</td>
+                <td>₹9,000</td>
+              </tr>
+              <tr>
                 <td>Class 3</td>
-                <td>₹1,000</td>
-                <td>₹8,000</td>
-                <td>₹9,000</td>
-              </tr>
-              <tr>
-                <td>Class 4</td>
-                <td>₹1,000</td>
-                <td>₹8,000</td>
-                <td>₹9,000</td>
-              </tr>
-              <tr>
-                <td>Class 5</td>
                 <td>₹1,000</td>
                 <td>₹8,500</td>
                 <td>₹9,500</td>
               </tr>
               <tr>
-                <td>Class 6</td>
+                <td>Class 4</td>
                 <td>₹1,000</td>
                 <td>₹9,000</td>
                 <td>₹10,000</td>
               </tr>
               <tr>
-                <td>Class 7</td>
+                <td>Class 5</td>
                 <td>₹1,000</td>
                 <td>₹9,500</td>
                 <td>₹10,500</td>
+              </tr>
+              <tr>
+                <td>Class 6</td>
+                <td>₹1,000</td>
+                <td>₹10,000</td>
+                <td>₹11,000</td>
+              </tr>
+              <tr>
+                <td>Class 7</td>
+                <td>₹1,000</td>
+                <td>₹10,500</td>
+                <td>₹11,500</td>
               </tr>
             </tbody>
           </table>
