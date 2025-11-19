@@ -1,86 +1,446 @@
-.container {
-          max-width: 1000px;
-          margin: auto;
-          padding: 20px;
-          font-family: Arial, sans-serif;
-        }
-        .back-btn {
-          margin-bottom: 20px;
-          padding: 8px 12px;
-          background-color: #2196f3;
-          color: white;
-          border: none;
-          cursor: pointer;
-          border-radius: 4px;
-        }
-        .back-btn:hover {
-          background-color: #1976d2;
-        }
-        .error {
-          color: red;
-        }
-        .filter {
-          margin: 15px 0;
-        }
-        select {
-          padding: 5px 10px;
-          border-radius: 4px;
-        }
-        .students-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-top: 15px;
-        }
-        .students-table th,
-        .students-table td {
-          padding: 10px;
-          text-align: left;
-          border-bottom: 1px solid #ddd;
-        }
-        .students-table th {
-          background-color: #f2f2f2;
-        }
-        .submit-btn {
-          margin-top: 20px;
-          padding: 10px 20px;
-          background-color: #4caf50;
-          color: white;
-          border: none;
-          cursor: pointer;
-          border-radius: 4px;
-        }
-        .submit-btn:hover {
-          background-color: #388e3c;
-        }
-        .edit-btn {
-          padding: 5px 10px;
-          background-color: #ff9800;
-          color: white;
-          border: none;
-          cursor: pointer;
-          border-radius: 4px;
-        }
-        .edit-btn:hover {
-          background-color: #fb8c00;
-        }
-        .switch {
-          position: relative;
-          display: inline-block;
-          width: 40px;
-          height: 22px;
-        }
-        .switch input {
-          opacity: 0;
-          width: 0;
-          height: 0;
-        }
-        .slider {
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          transition: 0.4s;
-          border-radius: 22px;
-        }
+.page-container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 25px 30px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #81c784;
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+h2 {
+  margin-top: 40px;
+  margin-bottom: 16px;
+  color: #4caf50;
+  font-weight: 700;
+  border-bottom: 3px solid #81c784;
+  padding-bottom: 6px;
+  font-size: 1.6rem;
+}
+
+h3, h4 {
+  color: #4caf50;
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 12px;
+  display: block;
+  color: #555;
+}
+
+select,
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1.5px solid #81c784 !important;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: #4caf50 !important;
+  box-shadow: 0 0 9px #81c784aa;
+}
+
+/* General Buttons */
+button {
+  padding: 10px 24px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  cursor: pointer !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  background-color: #81c784 !important;
+  transition: background-color 0.3s ease !important;
+  font-size: 1rem !important;
+}
+
+button:hover {
+  background-color: #4caf50 !important;
+}
+
+/* Attendance Table */
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 1rem;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.attendance-table thead {
+  background-color: #81c784;
+  color: #fff;
+  font-weight: 700;
+  text-align: left;
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.attendance-table tbody tr:hover {
+  background-color: #e8f5e9;
+  cursor: pointer;
+}
+
+/* Attendance Switch */
+.attendance-switch {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 34px;
+}
+
+.attendance-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.attendance-slider {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 34px;
+  background-color: #e53935;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 34px;
+  user-select: none;
+  transition: background-color 0.25s ease-in-out;
+  cursor: pointer;
+  line-height: 34px;
+  text-align: center;
+}
+
+.attendance-slider:before {
+  content: '';
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.25s ease-in-out;
+}
+
+.attendance-switch input:checked + .attendance-slider {
+  background-color: #4caf50;
+}
+
+.attendance-switch input:checked + .attendance-slider:before {
+  transform: translateX(56px);
+}
+
+/* Create Button */
+.create-btn {
+  background-color: #81c784 !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  font-size: 1rem !important;
+  transition: background-color 0.3s ease !important;
+  margin-top: 20px !important;
+  width: 200px;
+}
+
+.create-btn:hover {
+  background-color: #4caf50 !important;
+}
+
+/* Popups */
+.popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #81c784 !important;
+  color: white !important;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.35);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.15rem;
+  z-index: 2000;
+}
+
+.popup button {
+  margin-top: 15px;
+  background: white !important;
+  color: #81c784 !important;
+  padding: 10px 30px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+.popup button:hover {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+/* Confirmation Modal */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.confirm-box {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirm-actions button:first-child {
+  background-color: #1e293b;
+}
+
+.confirm-actions button:first-child:hover {
+  background-color: #152232;
+}
+
+/* Floating Form Popup */
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  backdrop-filter: blur(3px);
+}
+
+.form-popup {
+  position: relative;
+  background: #fff;
+  padding: 25px 35px;
+  border-radius: 16px;
+  width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.35s ease-out;
+}
+
+/* Close Button */
+.form-popup .popup-close {
+  all: unset;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  background-color: #e53935 !important;
+}
+
+
+.popup-close:hover {
+  background-color: rgba(153, 9, 9, 0.1);
+}
+
+/* Actions cell container */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px; /* space between buttons */
+}
+
+/* Delete + Edit Buttons */
+.delete-btn,
+.edit-btn {
+  all: unset;
+  padding: 6px 14px;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  min-width: 40px !important;
+  margin-left: 200px;
+}
+
+.delete-btn {
+  background-color: #e53935 !important;
+  width: auto;
+  height: auto;
+}
+
+.edit-btn:hover {
+  background-color: #1565c0;
+}
+
+.delete-btn:hover {
+  background-color: #a70505 !important;
+}
+
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 650px) {
+  .page-container {
+    padding: 15px 20px;
+  }
+  .attendance-table th,
+  .attendance-table td {
+    padding: 10px 14px;
+  }
+  .form-popup {
+    max-width: 95%;
+  }
+}
+
+.submit-btn{
+  justify-content: space-between !important;
+
+}
+
+.back-btn {
+  background-color: #1e293b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: auto !important;
+  justify-content: space-around;
+  margin-left: 950px;
+}
+
+.back-btn:hover {
+  background-color: #152232;
+}
+
+.view-popup {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+.view-popup h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e3a8a;
+}
+
+.view-section {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.view-section h4 {
+  color: #0b3d91;
+  margin-bottom: 8px;
+}
+
+.view-section p {
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+.view-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.view-btn:hover {
+  background-color: #1e40af;
+}
+.view-section h4 {
+  color: #0b3d91;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 4px;
+}
+
+.view-section p strong {
+  color: #1e3a8a;
+}
+
+.view-section:last-child {
+  margin-bottom: 0;
+}
+
+.fees-section {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
+}

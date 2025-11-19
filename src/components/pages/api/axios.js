@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://school-application-backend.onrender.com/api',
-  //baseURL: 'http://localhost:10000/api'
+  // baseURL: 'https://school-application-backend.onrender.com/api',
+  baseURL: 'http://localhost:10001/api'
 
 });
 // Attach token dynamically before each request

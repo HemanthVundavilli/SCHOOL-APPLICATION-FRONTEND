@@ -6,7 +6,7 @@
   border-radius: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -40,7 +40,11 @@ label {
   color: #555;
 }
 
-select, input[type="text"], input[type="email"], input[type="date"], input[type="password"] {
+select,
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"] {
   width: 100%;
   max-width: 400px;
   padding: 10px 12px;
@@ -52,48 +56,51 @@ select, input[type="text"], input[type="email"], input[type="date"], input[type=
   transition: border-color 0.3s ease;
 }
 
-select:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, input[type="password"]:focus {
+select:focus,
+input:focus {
   outline: none;
   border-color: #4caf50 !important;
   box-shadow: 0 0 9px #81c784aa;
 }
 
+/* General Buttons */
 button {
-  background-color: #81c784 !important;
-  color: white !important;
-  padding: 12px 30px !important;
-  border: none !important;
+  padding: 10px 24px !important;
   border-radius: 8px !important;
-  font-weight: 700 !important;
+  border: none !important;
   cursor: pointer !important;
-  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  background-color: #81c784 !important;
   transition: background-color 0.3s ease !important;
-  margin-top: 20px !important;
+  font-size: 1rem !important;
 }
 
 button:hover {
   background-color: #4caf50 !important;
 }
 
+/* Attendance Table */
 .attendance-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
   font-size: 1rem;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.05);
-  background: white;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+  background: #fff;
   border-radius: 8px;
   overflow: hidden;
 }
 
 .attendance-table thead {
   background-color: #81c784;
-  color: white;
+  color: #fff;
   font-weight: 700;
   text-align: left;
 }
 
-.attendance-table th, .attendance-table td {
+.attendance-table th,
+.attendance-table td {
   padding: 14px 18px;
   border-bottom: 1px solid #d3d3d3;
 }
@@ -103,196 +110,7 @@ button:hover {
   cursor: pointer;
 }
 
-.attendance-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.student-info {
-  flex-grow: 1;
-  padding-right: 15px;
-}
-
-.edit-popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1500;
-}
-
-.edit-popup {
-  background: white;
-  padding: 30px 35px;
-  border-radius: 12px;
-  max-width: 460px;
-  width: 90%;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-}
-
-.edit-form label {
-  margin-top: 12px;
-  display: block;
-  color: #555;
-  font-weight: 600;
-}
-
-.edit-form-buttons {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-}
-
-.edit-form-buttons button[type="submit"] {
-  background-color: #81c784 !important;
-  color: white !important;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.edit-form-buttons button[type="submit"]:hover {
-  background-color: #4caf50 !important;
-}
-
-.edit-form-buttons button[type="button"] {
-  background-color: #ddd;
-  color: #444;
-  border-radius: 8px;
-  padding: 12px 28px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  border: none;
-  transition: background-color 0.3s ease;
-}
-
-.edit-form-buttons button[type="button"]:hover {
-  background-color: #bbb;
-}
-
-/* Popup styles for generalized popup */
-.popup {
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #81c784 !important;
-  color: white !important;
-  padding: 25px 35px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgb(0 0 0 / 0.35);
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.15rem;
-  z-index: 2000;
-}
-
-.popup button {
-  margin-top: 15px;
-  background: white !important;
-  color: #81c784 !important;
-  border: none !important;
-  padding: 10px 30px !important;
-  font-weight: 700 !important;
-  border-radius: 8px !important;
-  cursor: pointer !important;
-  font-size: 1rem !important;
-  transition: background-color 0.3s ease !important;
-}
-
-.popup button:hover {
-  background-color: #4caf50 !important;
-  color: white !important;
-}
-
-@media (max-width: 650px) {
-  .page-container {
-    padding: 15px 20px;
-  }
-
-  .attendance-table th,
-  .attendance-table td {
-    padding: 10px 14px;
-  }
-
-  button {
-    width: 100% !important;
-    padding: 14px 0 !important;
-    font-size: 1.1rem !important;
-  }
-
-  .edit-popup {
-    max-width: 95%;
-  }
-}
-
-.forms-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 40px;
-  margin-bottom: 20px;
-}
-
-/* Make sure both create and edit forms use same base styles */
-.edit-form {
-  background: white;
-  padding: 20px 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 14px rgb(0 0 0 / 0.1);
-}
-
-/* Buttons */
-.edit-form-buttons {
-  margin-top: 25px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-}
-
-button {
-  padding: 10px 24px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  color: white;
-  background-color: rgb(129, 199, 132) !important; /* #81c784 */
-  transition: background-color 0.25s ease;
-}
-
-button:hover {
-  background-color: #4caf50 !important;
-}
-
-/* Inputs styling */
-input, select {
-  width: 100%;
-  padding: 8px 12px;
-  margin-top: 6px;
-  margin-bottom: 14px;
-  font-size: 1rem;
-  border: 1px solid #81c784;
-  border-radius: 6px;
-  box-sizing: border-box;
-  transition: border-color 0.25s ease;
-}
-
-input:focus, select:focus {
-  outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 9px #81c784aa;
-}
-
-/* Attendance Toggle Switch */
+/* Attendance Switch */
 .attendance-switch {
   position: relative;
   display: inline-block;
@@ -311,7 +129,7 @@ input:focus, select:focus {
   display: inline-block;
   width: 90px;
   height: 34px;
-  background-color: #e53935; /* Default to red for absent */
+  background-color: #e53935;
   color: white;
   font-size: 0.9rem;
   font-weight: 600;
@@ -335,24 +153,19 @@ input:focus, select:focus {
   transition: transform 0.25s ease-in-out;
 }
 
-/* Move knob when checked */
 .attendance-switch input:checked + .attendance-slider {
-  background-color: #4caf50; /* Green for present */
+  background-color: #4caf50;
 }
 
 .attendance-switch input:checked + .attendance-slider:before {
   transform: translateX(56px);
 }
 
-.attendance-switch input:not(:checked) + .attendance-slider:before {
-  transform: translateX(0px);
-}
-
+/* Create Button */
 .create-btn {
   background-color: #81c784 !important;
   color: white !important;
   padding: 10px 20px !important;
-  border: none !important;
   border-radius: 8px !important;
   font-weight: 700 !important;
   cursor: pointer !important;
@@ -364,4 +177,202 @@ input:focus, select:focus {
 
 .create-btn:hover {
   background-color: #4caf50 !important;
+}
+
+/* Popups */
+.popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #81c784 !important;
+  color: white !important;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.35);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.15rem;
+  z-index: 2000;
+}
+
+.popup button {
+  margin-top: 15px;
+  background: white !important;
+  color: #81c784 !important;
+  padding: 10px 30px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+.popup button:hover {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+/* Confirmation Modal */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.confirm-box {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirm-actions button:first-child {
+  background-color: #1e293b;
+}
+
+.confirm-actions button:first-child:hover {
+  background-color: #152232;
+}
+
+/* Floating Form Popup */
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9990 !important;
+  backdrop-filter: blur(3px);
+}
+
+.form-popup {
+  position: relative;
+  background: #fff;
+  padding: 25px 35px;
+  border-radius: 16px;
+  width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.35s ease-out;
+}
+
+/* Close Button */
+.form-popup .popup-close {
+  all: unset;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  background-color: #e53935 !important;
+}
+
+
+.popup-close:hover {
+  background-color: rgba(153, 9, 9, 0.1);
+}
+
+/* Actions cell container */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px; /* space between buttons */
+}
+
+/* Delete + Edit Buttons */
+.delete-btn,
+.edit-btn {
+  all: unset;
+  padding: 6px 14px;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  min-width: 40px;
+}
+
+.edit-btn {
+  background-color: #d1e51e;
+}
+
+.delete-btn {
+  background-color: #e53935 !important;
+}
+
+.edit-btn:hover {
+  background-color: #1565c0;
+}
+
+.delete-btn:hover {
+  background-color: #a70505 !important;
+}
+
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 650px) {
+  .page-container {
+    padding: 15px 20px;
+  }
+  .attendance-table th,
+  .attendance-table td {
+    padding: 10px 14px;
+  }
+  .form-popup {
+    max-width: 95%;
+  }
+}
+
+.submit-btn{
+  justify-content: space-between !important;
+
+}
+
+.back-btn {
+  background-color: #1e293b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: auto !important;
+  justify-content: space-around;
+  margin-left: 950px;
+}
+
+.back-btn:hover {
+  background-color: #152232;
 }

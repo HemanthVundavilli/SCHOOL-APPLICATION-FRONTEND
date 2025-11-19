@@ -1,19 +1,22 @@
+/* Make popup always appear above form popup */
 .popup-overlay {
   position: fixed;
-  top: 0; left: 0; right:0; bottom:0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-color: rgba(0,0,0,0.3);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 100000 !important;  /* Highest */
 }
 
 .popup-box {
   background: white;
-  padding: 20px 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+  padding: 25px 30px;
+  border-radius: 10px;
   text-align: center;
+  width: 320px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.35);
+  z-index: 100001;
 }
 
 .popup-box button {
@@ -26,6 +29,7 @@
   border-radius: 5px;
   font-weight: 600;
 }
+
 
 /* Slider styles */
 .switch {

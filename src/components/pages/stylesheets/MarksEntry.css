@@ -1,172 +1,323 @@
-/* Container */
+/* ===== Marks Entry Page ===== */
 .marks-entry-container {
-  max-width: 900px;
-  margin: 30px auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px 35px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e293b;
 }
 
-/* Header */
+/* ===== Header ===== */
 .marks-entry-container h3 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #007bff;
+  text-align: center;
+  color: #0d6efd;
+  font-size: 2rem;
+  font-weight: 700;
+  border-bottom: 3px solid #93c5fd;
   padding-bottom: 8px;
+  margin-bottom: 25px;
 }
 
-/* Filters */
+/* ===== Filter Section ===== */
 .filter-group {
-  margin-bottom: 20px;
   display: flex;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
 .filter-group label {
   font-weight: 600;
-  font-size: 16px;
-  align-self: center;
+  color: #374151;
+  font-size: 1rem;
 }
 
 .filter-group select,
-.filter-group input[type="text"] {
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-width: 200px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
+.filter-group input {
+  border: 1.8px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  width: 220px;
 }
 
 .filter-group select:focus,
-.filter-group input[type="text"]:focus {
-  border-color: #007bff;
+.filter-group input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.4);
   outline: none;
 }
 
-/* Student item */
+/* ===== Student Card ===== */
 .student-card {
-  border: 1px solid #ddd;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
   padding: 18px 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  background: #fafafa;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease;
+  margin-bottom: 22px;
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
 }
 
 .student-card:hover {
-  box-shadow: 0 0 16px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .student-card-header {
-  font-weight: 700;
-  font-size: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2563eb;
   margin-bottom: 12px;
-  color: #007bff;
 }
-
-/* Table styles */
-table {
+/* ===== Editable Marks Table (Improved Layout) ===== */
+.marks-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 12px;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-thead th {
-  background-color: #007bff;
+/* Header */
+.marks-table thead th {
+  background: #16a34a;
   color: white;
   font-weight: 600;
-  padding: 10px 8px;
-  border: 1px solid #007bff;
+  font-size: 0.9rem;
+  padding: 12px 8px;
   text-align: center;
+  white-space: nowrap;
+  border-bottom: 3px solid #31e472;
 }
 
-tbody td {
-  padding: 6px 8px;
-  border: 1px solid #ddd;
+.marks-table th:first-child {
+  border-top-left-radius: 8px;
+}
+.marks-table th:last-child {
+  border-top-right-radius: 8px;
+}
+
+/* Body Cells */
+.marks-table td {
+  border-bottom: 1px solid #e5e7eb;
   text-align: center;
+  padding: 8px 6px;
+  font-size: 0.9rem;
+  color: #1f2937;
+  vertical-align: middle;
+  background-color: #fff;
 }
 
-tbody tr:nth-child(odd) {
-  background-color: #f7f9fc;
+.marks-table tr:nth-child(even) td {
+  background-color: #f9fafb;
 }
 
-/* Input fields */
-input[type="text"],
-input[type="number"] {
+/* Total Column */
+.marks-table td:last-child {
+  font-weight: 700;
+  color: #047857;
+  background-color: #ecfdf5;
+  border-left: 2px solid #6ee7b7;
+}
+
+/* Inputs */
+.marks-table input[type="number"] {
   width: 60px;
-  padding: 6px 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 6px;
+  border: 1.6px solid #cbd5e1;
+  border-radius: 6px;
   text-align: center;
-  transition: border-color 0.3s ease;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus {
-  border-color: #007bff;
+.marks-table input[type="number"]:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
   outline: none;
 }
 
-/* Buttons */
+/* Assessment Type Row Label */
+.marks-table td:first-child {
+  font-weight: 600;
+  color: #16a34a;
+  text-align: left;
+  padding-left: 10px;
+  background-color: #f1f5f9;
+  font-size: large;
+  font-weight: 800;
+}
+
+/* Row Hover */
+.marks-table tbody tr:hover td {
+  background-color: #f0f9ff;
+  transition: background-color 0.2s ease;
+}
+
+/* Buttons Below Table */
+.marks-table-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.marks-table-actions button {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 8px 16px;
+  transition: 0.25s;
+}
+
+.marks-table-actions .save-btn {
+  background-color: #16a34a;
+}
+.marks-table-actions .save-btn:hover {
+  background-color: #15803d;
+}
+
+.marks-table-actions .cancel-btn {
+  background-color: #f43f5e;
+}
+.marks-table-actions .cancel-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .marks-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .marks-table th,
+  .marks-table td {
+    font-size: 0.85rem;
+    padding: 6px 5px;
+  }
+}
+
+/* ===== Input Fields ===== */
+.marks-table input[type="number"] {
+  width: 60px;
+  padding: 6px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.9rem;
+  transition: border-color 0.25s ease;
+}
+
+.marks-table input[type="number"]:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+  outline: none;
+}
+
+/* ===== Buttons ===== */
 button {
-  padding: 8px 18px;
-  background-color: #007bff;
+  background-color: #0d6efd;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  padding: 8px 16px;
   font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: background-color 0.25s ease;
-  font-size: 15px;
-  margin-top: 6px;
 }
 
 button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #084298;
 }
 
 button:disabled {
-  background-color: #a2c0f2;
+  background-color: #93c5fd;
   cursor: not-allowed;
 }
 
 button + button {
-  margin-left: 12px;
+  margin-left: 10px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
+.save-btn {
+  background-color: #16a34a;
+}
+
+.save-btn:hover {
+  background-color: #15803d;
+}
+
+.cancel-btn {
+  background-color: #f43f5e;
+}
+
+.cancel-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* ===== Popup ===== */
+.popup {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
   .filter-group {
     flex-direction: column;
+    align-items: flex-start;
   }
-  .filter-group select,
-  .filter-group input[type="text"] {
-    min-width: 100%;
+
+  .marks-table {
+    font-size: 0.85rem;
+    overflow-x: auto;
+    display: block;
   }
+
   .student-card {
     padding: 15px;
   }
-  table, thead, tbody, tr, th, td {
-    display: block;
-    width: 100%;
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 14px;
   }
-  thead tr {
-    display: none;
-  }
-  tbody td {
-    border: none;
-    padding: 10px 0;
-    position: relative;
-  }
-  tbody td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    display: inline-block;
-    width: 200px;
-    color: #940b0b;
-  }
+}
+
+/* Back button styling */
+.back-btn {
+  all: unset;
+  background-color: #2e7d32 !important;
+  color: #fff;
+  border: none !important;
+  padding: 8px 18px !important;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  align-items: end !important;
+  margin-left: 956px !important;
+}
+
+.back-btn:hover {
+  background-color: #256a27;
+}
+
+.back-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
